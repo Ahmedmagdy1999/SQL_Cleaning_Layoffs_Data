@@ -84,3 +84,13 @@ SET `date` = STR_TO_DATE (`date`,'%m/%d/%Y');
 ALTER TABLE layoffs_staging2 
 MODIFY COLUMN `date` DATE;
 
+```
+```sql
+SELECT t1.industry, t2.industry 
+FROM layoffs_staging2 t1
+JOIN layoffs_staging2 t2
+ON t1.company=t2.company
+AND t1.location = t2.location
+WHERE (t1.industry IS NULL)
+AND t2.industry IS NOT NULL;
+
